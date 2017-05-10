@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% if items %}
+                <form action="/move" method="post">
+                    <fieldset class="form-group">
+                        <legend>{{ title }}</legend>
+
+
+                    {% for item in items %}
+                    <div class="form-check">
+                        <label class="form-check-label" for="id{{ loop.index }}_{{ item }}">
+                            <input type="radio" name="page" id="id{{ loop.index }}_{{ item }}" value="{{ item }}" required
+                            {% if loop.first %}
+                                checked
+                            {% endif %}
+                                >
+                            {{ item }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                    </fieldset>
+                    <label class="form-check-label">
+                        <input type="submit" class="form-check-input">
+                    </label>
+                </form>
+            {% else %}
+                <p> Perdu! (plus de lien)
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
